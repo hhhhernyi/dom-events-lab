@@ -36,58 +36,52 @@ buttons.forEach((button) => {
 });
 
 // this function will take in displayElement textContent, which is X+Y or something
-// check the 2nd character on the string which is the operator
-// switch case on the operator to do the calculations
-// takes the first character and third character (which are numbers in string form)
-// convert them into numbers
-// do the operation and return the result
-// but this only works on single digit
+// loop through the displayElement string and find the operator (+-*/)
+// store this character in 'operator'
+// get the index of 'operator' in the string displayElement
+// anything before this index is the first number
+// anything after this index is the last number
+// use switch case to check what is the sign of the operator
+// perform the operations on the firstNum and lastNum based on the operator
+// store the answer in result and return it
+// this answer is then displayed on displayElement
 
 function calculateResult(statement) {
   let result;
-  switch (statement.charAt(1)) {
+  let indexOfOperator;
+    let firstNum;
+    let lastNum;
+    let operator;
+  for (let i=0; i<statement.length;i++) {
+    if (statement.charAt(i)==="+" || statement.charAt(i)==="-" ||statement.charAt(i)==="/" ||statement.charAt(i)==="*" ) {
+      operator = statement.charAt(i);
+      //console.log(operator);
+      indexOfOperator = statement.indexOf(operator);
+      //console.log(indexOfOperator);
+      firstNum=Number(statement.slice(0,indexOfOperator))
+      //console.log(firstNum);
+      lastNum=Number(statement.slice(indexOfOperator+1,statement.length))
+      //console.log(lastNum);
+    }
+  // result=firstNum+lastNum
+  // console.log(result)
+    
+    
+  }
+  switch (operator) {
     case "+":
-      result = Number(statement.charAt(0)) + Number(statement.charAt(2)); // use google search to find out how to get a certain character in a string and to convert a string to number
+      result = firstNum + lastNum; // use google search to find out how to get a certain character in a string and to convert a string to number
       break;
     case "-":
-      result = Number(statement.charAt(0)) - Number(statement.charAt(2));
+      result = firstNum - lastNum;
       break;
     case "*":
-      result = Number(statement.charAt(0)) * Number(statement.charAt(2));
+      result = firstNum * lastNum;
       break;
     case "/":
-      result = Number(statement.charAt(0)) / Number(statement.charAt(2));
+      result = firstNum / lastNum;
       break;
   }
   return result;
 }
 
-// // testing on new methods i found on google
-
-// let a="123+345";
-// // console.group(a.charAt(0)+a.charAt(1))
-// // console.log(Number(b)+Number(c))
-// // console.log(Number(a.charAt(0))+Number(a.charAt(0)));
-// // console.log(a.length);
-// console.log(typeof parseInt(a.charAt(5)));
-// // console.log(typeof Number(a.charAt(0)))
-
-// // for (let i=0; i<a.length; i++) {
-// //   console.log(a.charAt(i));
-// // }
-
-
-
-// let firstNum="";
-// let operator="";
-// for (let i=0; i<a.length; i++) {
- 
-//   if (typeof Number(a.charAt(i)) === "number") {
-//     firstNum=firstNum+a.charAt(i);
-//   } else {
-//     operator=a.charAt(i);
-//   }
-  
-// }
-// console.log(firstNum);
-// console.log(operator);
